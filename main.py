@@ -52,3 +52,7 @@ def main():
 
     asyncio.get_event_loop().run_until_complete(start())
     asyncio.get_event_loop().run_forever()
+
+if __name__ == "__main__":
+    print("Cron service is running.")
+    main()
