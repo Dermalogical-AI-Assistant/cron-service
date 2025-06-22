@@ -9,7 +9,7 @@ STATUS_ACTIVE = "ACTIVE"
 STATUS_EXPIRED = "EXPIRED"
 
 async def handle_discount_status_update():
-    await database.connect()  # ✅ Ensure connection is open
+    await database.connect()
     now = datetime.now(pytz.timezone("Asia/Bangkok"))
 
     query_activate = """
@@ -42,10 +42,9 @@ def job_wrapper():
     asyncio.run(handle_discount_status_update())
 
 def main():
-    # Schedule the job to run every day at 9:47 AM
     schedule.every().day.at("07:00").do(job_wrapper)
 
-    print("Scheduler started (schedule lib). Press Ctrl+C to stop.")
+    print("Scheduler started (schedule lib).")
     while True:
         schedule.run_pending()
         time.sleep(1)
